@@ -1,0 +1,13 @@
+{
+  "name": "ghertist",
+  "version": "1.0.0",
+  "description": "My first multi-user virtual reality",
+  "scripts": {
+    "start": "node ./server/index.js"
+  },
+  "author": "Chris Godber",
+  "dependencies": {
+    "aframe-room-component": "^0.3.2",
+    "networked-aframe": "^0.7.0"
+  }
+}
