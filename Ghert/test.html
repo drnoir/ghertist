@@ -9,11 +9,23 @@
 <body>
 <a-scene>
     <a-entity sharedspace avatars>
+        <a-entity sharedspace="hold: true; audio: true" avatars>
         <!-- Actually, this is not needed but convenient to have some reference points -->
+            <a-assets>
+                <a-mixin id="user" visible="false" look-controls wasd-controls share="position, rotation"></a-mixin>
+            </a-assets>
+            <a-entity sharedspace="hold: true; audio: true" avatars="onmyself: user">
         <a-entity environment="preset: forest"><a-entity>
         </a-entity>
 </a-scene>
 <template>
-    <a-sphere radius="0.1" color=”#ff0000”></a-sphere>
+    <a-entity>
+        <a-sphere radius="0.1" color="#ffffff"></a-sphere>
+        <a-sphere position="0.05 0.03 -0.08" radius="0.02" segments-width="8" segments-height="8" color="#000000"></a-sphere>
+        <a-sphere position="-0.05 0.03 -0.08" radius="0.02" segments-width="8" segments-height="8" color="#000000"></a-sphere>
+        <a-sphere class="themable" position="0 -0.07 -0.1" scale="1 1 0.5" segments-width="4" segments-height="4" radius="0.02" color="#11fd3e"></a-sphere>
+        <a-cone class="themable" position="0.03 -0.07 -0.1" rotation="0 0 90" scale="1 1 0.5" segments-radial="8" segments-height="1" height="0.03" radius-bottom="0.03"  color="#1cff3c"></a-cone>
+        <a-cone class="themable" position="-0.03 -0.07 -0.1" rotation="0 0 -90" scale="1 1 0.5" segments-radial="8" segments-height="1" height="0.03" radius-bottom="0.03"  color="#1cff3c"></a-cone>
+    </a-entity>
 </template>
 </body>
