@@ -9,19 +9,14 @@
 <body>
 
 <a-scene>
-    <!-- Actually, this is not needed but convenient to have some reference points -->
-
- <a-entity sharedspace="audio: true; hold: true" avatars>
-
-
-        <a-entity environment="preset: forest"></a-entity>
-
-
- </a-entity>
+    <a-entity sharedspace avatars audio: true>
+        <!-- Actually, this is not needed but convenient to have some reference points -->
+        <a-entity environment="preset: forest"><a-entity>
+        </a-entity>
 </a-scene>
-<a-assets>
-    <a-mixin id="user" visible="false" look-controls wasd-controls share="position, rotation"></a-mixin>
-</a-assets>
+<template>
+    <a-sphere radius="0.1" color=”#ff0000”></a-sphere>
+</template>
 
 <template>
     <a-entity>
