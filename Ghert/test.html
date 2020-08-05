@@ -8,14 +8,15 @@
 <!-- Inside body -->
 <body>
 <a-scene>
- =
+ <a-entity sharedspace="audio: true; hold: true" avatars>
         <!-- Actually, this is not needed but convenient to have some reference points -->
             <a-assets>
                 <a-mixin id="user" visible="false" look-controls wasd-controls share="position, rotation"></a-mixin>
             </a-assets>
-        <a-entity sharedspace="audio: true" avatars></a-entity>
+
 
         <a-entity environment="preset: forest"></a-entity>
+ </a-entity>
 </a-scene>
 <template>
     <a-entity>
