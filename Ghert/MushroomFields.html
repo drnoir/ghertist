@@ -11,9 +11,10 @@
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
     <script src="/js/spawn-in-circle.component.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
 </head>
 <body>
-<a-scene networked-scene="
+<a-scene  networked-scene="
       room: basic-audio;
       debug: true;
       adapter: webrtc;
@@ -72,15 +73,24 @@
     </a-entity>
 
 <!--    lighting -->
-    <a-entity light="color: #ccccff; intensity: 0.5; type: ambient;" visible=""></a-entity>
-    <a-entity environment="preset: threetowers; groundColor: black;groundYScale:40; seed:25;
+    <a-entity light="color: #8B0000; intensity: 1; type: ambient;" visible=""></a-entity>
+    <a-entity environment="
+    preset:goaland;
+    groundColor: black;
+    groundColor2: white;
+    skyColor: black;
+    fog:0.9;
+    groundYScale:40;
+    seed:7;
+    skyType: gradient;
     shadow:true;
-    dressingUniformScale:false;
-    dressing:apparatus;
-    dressingColor: #B2B2B2;
-     ground:hills;
-     dressingAmount:20;
-     dressingVariance:2,5,3;">
+    dressing:mushrooms;
+    dressingColor:#7D26CD;
+    dressingScale:2;
+      dressingAmount:200;
+    groundTexture: walkernoise;
+    grid: none;
+    ground:spikes;">
     </a-entity>
 </a-scene>
 <script>
