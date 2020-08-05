@@ -9,11 +9,14 @@
 <body>
 
 <a-scene>
-    <a-entity sharedspace avatars audio: true>
+    <a-entity sharedspace="audio: true" avatars >
         <!-- Actually, this is not needed but convenient to have some reference points -->
         <a-entity environment="preset: forest"><a-entity>
         </a-entity>
 </a-scene>
+
+
+
 <template>
     <a-sphere radius="0.1" color=”#ff0000”></a-sphere>
 </template>
