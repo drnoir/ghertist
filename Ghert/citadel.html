@@ -28,35 +28,35 @@
         <!-- Avatar -->
         <template id="avatar-template">
             <a-entity>
-                <a-entity class="nametag" text="value: Hello World; align:center;" position="0 0.7 0" rotation="0 180 0" scale="8 8 8"></a-entity>
+            <a-entity class="nametag" text="value: Hello World; align:center;" position="0 0.7 0" rotation="0 180 0" scale="8 8 8"></a-entity>
+                    <a-entity class="avatar" networked-audio-source>
 
-                <a-entity class="avatar" network-audio-source>
                     <a-sphere class="head"
-                              color="#5985ff"
-                              scale="0.45 0.5 0.37"
                               random-color
+                              scale="0.45 0.5 0.4"
                     ></a-sphere>
                     <a-entity class="face"
                               position="0 0.05 0"
                     >
                         <a-sphere class="eye"
-                                  color="#efefef"
-                                  position="0.16 0.1 -0.35"
-                                  scale="0.16 0.16 0.16"
+                                  random-color
+                                  position="0.16 0.1 -0.25"
+                                  scale="0.12 0.12 0.12"
                         >
                             <a-sphere class="pupil"
-                                      color="#000"
+                                      color="#efefef"
                                       position="0 0 -1"
                                       scale="0.2 0.2 0.2"
                             ></a-sphere>
                         </a-sphere>
                         <a-sphere class="eye"
-                                  color="#efefef"
-                                  position="-0.16 0.1 -0.35"
-                                  scale="0.16 0.16 0.16"
+
+                                  random-color
+                                  position="-0.16 0.1 -0.25"
+                                  scale="0.12 0.12 0.12"
                         >
                             <a-sphere class="pupil"
-                                      color="#000"
+                                      random-color
                                       position="0 0 -1"
                                       scale="0.2 0.2 0.2"
                             ></a-sphere>
@@ -69,10 +69,10 @@
 <!--    lighting -->
     <a-entity light="color: #ccccff; intensity: 0.5; type: ambient;" visible=""></a-entity>
 
-        <a-entity id="player"
-                  networked="template:#avatar-template;attachTemplateToLocal:true;"
-                  camera position="0 2  0"
-                  wasd-controls look-controls>
+        <a-entity id="player" visible="false" networked="template:#avatar-template;attachTemplateToLocal:true;" camera spawn-in-circle="radius:3;" position="0 1.3 0" wasd-controls look-controls>
+
+
+
         </a-entity>
 
     <a-entity environment="preset: threetowers; groundColor: black;groundYScale:40; seed:25;
