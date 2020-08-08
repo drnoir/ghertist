@@ -117,7 +117,7 @@
         var username = 'user-' + makeId(5).toLowerCase();
         username = prompt('Choose a username', username);
         var player = document.getElementById('player');
-        var myNametag = player.querySelector('.nametag');
+        var myNametag = player.getElementsByClassName('nametag');
         myNametag.setAttribute('text', 'value', username);
 
         document.querySelector('a-scene').components['networked-scene'].connect();
