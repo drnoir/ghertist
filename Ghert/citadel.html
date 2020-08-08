@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
-    <script src="https://unpkg.com/naf-easyrtc-adapter/dist/naf-easyrtc-adapter.min.js"></script>
+
     <script src="/js/spawn-in-circle.component.js"></script>
 </head>
 <body>
@@ -24,58 +24,56 @@
     <a-assets>
         <!-- Templates -->
         <!-- Avatar -->
+        <!-- Avatar -->
         <template id="avatar-template">
-            <a-entity class="avatar" networked-audio-source>
-                <a-sphere class="head"
-                          color="#ffffff"
-                          scale="0.45 0.5 0.4"
-                ></a-sphere>
-                <a-entity class="face"
-                          position="0 0.05 0"
-                >
-                    <a-sphere class="eye"
-                              color="#efefef"
-                              position="0.16 0.1 -0.35"
-                              scale="0.12 0.12 0.12"
+            <a-entity>
+                <a-entity class="nametag" text="value: Hello World; align:center;" position="0 0.7 0" rotation="0 180 0" scale="8 8 8"></a-entity>
+
+                <a-entity class="avatar" network-audio-source>
+                    <a-sphere class="head"
+                              color="#5985ff"
+                              scale="0.45 0.5 0.37"
+                              random-color
+                    ></a-sphere>
+                    <a-entity class="face"
+                              position="0 0.05 0"
                     >
-                        <a-sphere class="pupil"
-                                  color="#000"
-                                  position="0 0 -1"
-                                  scale="0.2 0.2 0.2"
-                        ></a-sphere>
-                    </a-sphere>
-                    <a-sphere class="eye"
-                              color="#efefef"
-                              position="-0.16 0.1 -0.35"
-                              scale="0.12 0.12 0.12"
-                    >
-                        <a-sphere class="pupil"
-                                  color="#000"
-                                  position="0 0 -1"
-                                  scale="0.2 0.2 0.2"
-                        ></a-sphere>
-                    </a-sphere>
+                        <a-sphere class="eye"
+                                  color="#efefef"
+                                  position="0.16 0.1 -0.35"
+                                  scale="0.16 0.16 0.16"
+                        >
+                            <a-sphere class="pupil"
+                                      color="#000"
+                                      position="0 0 -1"
+                                      scale="0.2 0.2 0.2"
+                            ></a-sphere>
+                        </a-sphere>
+                        <a-sphere class="eye"
+                                  color="#efefef"
+                                  position="-0.16 0.1 -0.35"
+                                  scale="0.16 0.16 0.16"
+                        >
+                            <a-sphere class="pupil"
+                                      color="#000"
+                                      position="0 0 -1"
+                                      scale="0.2 0.2 0.2"
+                            ></a-sphere>
+                        </a-sphere>
+                    </a-entity>
                 </a-entity>
             </a-entity>
         </template>
-        <!-- /Templates -->
-    </a-assets>
-
-    <a-entity id="player"
-              networked="template:#avatar-template;attachTemplateToLocal:false;"
-              camera
-              position="0 1.6 0"
-              spawn-in-circle="radius:3"
-              wasd-controls look-controls
-    >
-        <a-sphere class="head"
-                  visible="false"
-                  random-color
-        ></a-sphere>
-    </a-entity>
-
+    </a-assets>s
 <!--    lighting -->
     <a-entity light="color: #ccccff; intensity: 0.5; type: ambient;" visible=""></a-entity>
+
+        <a-entity id="player"
+                  networked="template:#avatar-template;attachTemplateToLocal:false;"
+                  camera position="0 2  0"
+                  wasd-controls look-controls>
+        </a-entity>
+
     <a-entity environment="preset: threetowers; groundColor: black;groundYScale:40; seed:25;
     shadow:true;
     dressingUniformScale:false;
@@ -97,9 +95,44 @@
                 selector: '.head',
                 component: 'material',
                 property: 'color'
+            },
+            {
+                selector: '.nametag',
+                component: 'text',
+                property: 'value'
             }
         ]
     });
+
+
+    var scene = document.querySelector('a-scene');
+
+    if (scene.hasLoaded) {
+        onSceneLoad();
+    } else {
+        scene.addEventListener('loaded', onSceneLoad);
+    }
+
+    function onSceneLoad() {
+        var username = 'user-' + makeId(5).toLowerCase();
+        username = prompt('Choose a username', username);
+        var player = document.getElementById('player');
+        var myNametag = player.querySelector('.nametag');
+        myNametag.setAttribute('text', 'value', username);
+
+        document.querySelector('a-scene').components['networked-scene'].connect();
+    }
+
+    function makeId(length) {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < length; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
+
     // Called by Networked-Aframe when connected to server
     function onConnect () {
         console.log("onConnect", new Date());
