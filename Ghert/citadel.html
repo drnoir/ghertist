@@ -19,6 +19,7 @@
       debug: true;
       adapter: webrtc;
       audio: true;
+      connectOnLoad: false;
       serverURL: https://ghertist-3d-chatroom.herokuapp.com/;
 ">
     <a-assets>
@@ -64,7 +65,7 @@
                 </a-entity>
             </a-entity>
         </template>
-    </a-assets>s
+    </a-assets>
 <!--    lighting -->
     <a-entity light="color: #ccccff; intensity: 0.5; type: ambient;" visible=""></a-entity>
 
@@ -117,7 +118,7 @@
         var username = 'user-' + makeId(5).toLowerCase();
         username = prompt('Choose a username', username);
         var player = document.getElementById('player');
-        var myNametag = player.getElementsByClassName('nametag');
+        var myNametag = player.querySelector('.nametag');
         myNametag.setAttribute('text', 'value', username);
 
         document.querySelector('a-scene').components['networked-scene'].connect();
