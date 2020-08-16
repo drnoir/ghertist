@@ -1,0 +1,147 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ghertist 3D Chatroom</title>
+    <meta name="description" content="Citadel Virtual 3D Chatroom">
+    <!-- Inside head -->
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/delapuente/aframe-sharedspace-component/master/dist/aframe-sharedspace-component.min.js"></script>
+    <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+</head>
+<body>
+<a-scene networked-scene="
+      room: Mushroom Fields;
+      debug: true;
+      adapter: webrtc;
+      audio: true;
+      connectOnLoad: false;
+      serverURL: https://ghertist-3d-chatroom.herokuapp.com/;
+">
+
+
+    <a-assets>
+        <!-- Templates -->
+        <!-- Avatar -->
+        <!-- Avatar -->
+        <template id="avatar-template">
+            <a-entity>
+                <a-entity class="nametag" text="value: Hello World; align:center;" position="0 0.7 0" rotation="0 180 0" scale="8 8 8"></a-entity>
+                <a-entity class="avatar" networked-audio-source>
+
+                    <a-sphere class="head"
+                              random-color
+                              scale="0.45 0.5 0.4"
+                    ></a-sphere>
+                    <a-entity class="face"
+                              position="0 0.05 0"
+                    >
+                        <a-sphere class="eye"
+                                  random-color
+                                  position="0.16 0.1 -0.25"
+                                  scale="0.12 0.12 0.12"
+                        >
+                            <a-sphere class="pupil"
+                                      color="#efefef"
+                                      position="0 0 -1"
+                                      scale="0.2 0.2 0.2"
+                            ></a-sphere>
+                        </a-sphere>
+                        <a-sphere class="eye"
+
+                                  random-color
+                                  position="-0.16 0.1 -0.25"
+                                  scale="0.12 0.12 0.12"
+                        >
+                            <a-sphere class="pupil"
+                                      random-color
+                                      position="0 0 -1"
+                                      scale="0.2 0.2 0.2"
+                            ></a-sphere>
+                        </a-sphere>
+                    </a-entity>
+                </a-entity>
+            </a-entity>
+        </template>
+    </a-assets>
+<!--    lighting -->
+    <a-entity light="color: #8B0000; intensity: 1; type: ambient;" visible=""></a-entity>
+        <a-entity id="player" visible="false" networked="template:#avatar-template;attachTemplateToLocal:true;"
+                  camera spawn-in-circle="radius:3;" position="0 1.3 0"
+                  wasd-controls look-controls>
+        </a-entity>
+    <a-entity environment="
+    preset:goaland;
+    groundColor: black;
+    groundColor2: white;
+    skyColor: black;
+    fog:0.9;
+    groundYScale:40;
+    seed:7;
+    skyType: gradient;
+    shadow:true;
+    dressing:mushrooms;
+    dressingColor:#7D26CD;
+    dressingScale:2;
+      dressingAmount:200;
+    groundTexture: walkernoise;
+    grid: none;
+    ground:spikes;">
+    </a-entity>
+</a-scene>
+<script>
+
+    // Define custom schema for syncing avatar color, set by random-color
+    NAF.schemas.add({
+        template: '#avatar-template',
+        components: [
+            'position',
+            'rotation',
+            {
+                selector: '.head',
+                component: 'material',
+                property: 'color'
+            },
+            {
+                selector: '.nametag',
+                component: 'text',
+                property: 'value'
+            }
+        ]
+    });
+
+
+    var scene = document.querySelector('a-scene');
+
+    if (scene.hasLoaded) {
+        onSceneLoad();
+    } else {
+        scene.addEventListener('loaded', onSceneLoad);
+    }
+
+    function onSceneLoad() {
+        var username = 'user-' + makeId(5).toLowerCase();
+        username = prompt('Choose a username', username);
+        var player = document.getElementById('player');
+        var myNametag = player.querySelector('.nametag');
+        myNametag.setAttribute('text', 'value', username);
+        console.log( "nametag equals"+myNametag +"username equals"+ username+ "player var "+player)
+        document.querySelector('a-scene').components['networked-scene'].connect();
+    }
+
+    function makeId(length) {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < length; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
+
+    // Called by Networked-Aframe when connected to server
+    function onConnect () {
+        console.log("onConnect", new Date());
+    }
+</script>
+</body>
+</html>
