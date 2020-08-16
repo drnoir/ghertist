@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Citadel of Ghert</title>
+    <title>Ghertist 3D Chatroom</title>
     <meta name="description" content="Collection of examples for networked-aframe"></meta>
     <style>
 
@@ -8,8 +8,8 @@
       @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
 
       html {
-        background: #36a66b;
-        color: #000;
+        background: black;
+        color: white;
         font-family: 'Open Sans Condensed', sans-serif;
         font-size: 20px;
         padding: 10px 20px;
@@ -17,6 +17,10 @@
       h1 {
         font-weight: 300;
         font-family: 'Bungee', cursive;
+        animation: text-flicker 3s linear infinite;
+      }
+      h2{
+        animation: text-flicker 5s linear infinite;
       }
       a {
         color: #FAFAFA;
@@ -29,36 +33,120 @@
 
       .right{
         float:right;
-        margin:20px;
+        animation: fadeIn ease 20s;
+        -webkit-animation: fadeIn ease 20s;
+        -moz-animation: fadeIn ease 20s;
+        -o-animation: fadeIn ease 20s;
+        -ms-animation: fadeIn ease 20s;
+        max-width: 800px;
+        height: auto;
       }
+      @keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+
+      @-moz-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+
+      @-webkit-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+
+      @-o-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+
+      @-ms-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+      @keyframes text-flicker {
+        0% {
+          opacity:0.1;
+          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+        }
+
+        2% {
+          opacity:1;
+          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+        }
+        8% {
+          opacity:0.1;
+          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+        }
+        9% {
+          opacity:1;
+          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+        }
+        12% {
+          opacity:0.1;
+          text-shadow: 0px 0px rgba(242, 22, 22, 1);
+        }
+        20% {
+          opacity:1;
+          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
+        }
+        25% {
+          opacity:0.3;
+          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
+        }
+        30% {
+          opacity:1;
+          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
+        }
+
+        70% {
+          opacity:0.7;
+          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
+        }
+
+        72% {
+          opacity:0.2;
+          text-shadow:0px 0px 29px rgba(242, 22, 22, 1)
+        }
+
+        77% {
+          opacity:.9;
+          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
+        }
+        100% {
+          opacity:.9;
+          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
+        }
+      }
+      canvas { display: block; }
+
+
+
     </style>
+
   </head>
   <body>
-    <img src = "images/ghert.jpg" width="1000" class="right"/>
-    <h1>Ghertist 3D Chatroom</h1>
-    <h4>Experimental 3D / VR  Chatroom experience supporting audio chat</h4>
-    <p>Chat and talk to others in several 3D enviroments running in browser or Mobile</p>
 
+    <h1>Ghertist 3D Chatroom</h1>
+    <img src = "images/ghert.jpg" width="1000" class="right"/>
+    <h4>Experimental 3D / VR  Chatroom platform supporting audio chat</h4>
+    <p>Talk to others using voicechat in 3D enviroments running in browser or Mobile</p>
     <p><a href = "https://www.urbandictionary.com/define.php?term=Ghertist">What is a Ghertist?</a></p>
     <p>Essentially an elaborate Joke...</p>
     <h2>Chat Rooms</h2>
     <div>
-      <a href="citadel.html">Citadel</a>
-      <span>General Chat - For conversations about anything</span>
-    </div>
-    <div>
-      <a href="mushroomfields.html">Mushroom Fields</a>
-      <span>Deep chat - Talk about anything 'deep' here - science, art, philosophy etc</span>
+      <ul>
+        <li><a href="citadel.html">Citadel</a> For conversations about anything</li>
+        <li><a href="mushroomfields.html">Mushroom Fields</a> Talk about anything 'deep' here - science, art, philosophy etc</li>
+      </ul>
     </div>
 
     <h4>Powered by:</h4>
     <p>Built with <a href="https://aframe.io/">A-Frame</a>, <a href ="https://www.npmjs.com/package/networked-aframe">Networked A-Frame</a> and <a href = "https://github.com/supermedium/aframe-environment-component">A-Frame Enviroment component</a> by <a href = "http://www.chrisgodber.co.uk">Chris Godber 2020</a></p>
 
-    <div>
 
 
-
-    <br>
 
     <!-- GitHub Corner. -->
     <a href="https://github.com/drnoir/ghertist" class="github-corner">
