@@ -119,10 +119,9 @@
         username = prompt('Choose a username', username);
         var player = document.getElementById('player');
         var myNametag = player.querySelector(".name");
-        var namevalue = myNametag.getAttribute('value');
-        console.log("name value is"+namevalue);
-        myNametag.setAttribute(namevalue , username);
-        console.log( "nametag equals"+myNametag +"username equals"+ username+ "player var "+player)
+        myNametag.setAttribute('text', 'value', username);
+        var tagCheck = myNametag.getAttribute('text', 'value');
+        console.log(tagCheck);
         document.querySelector('a-scene').components['networked-scene'].connect();
     }
 
