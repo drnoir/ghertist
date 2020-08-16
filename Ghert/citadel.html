@@ -28,7 +28,7 @@
         <!-- Avatar -->
         <template id="avatar-template">
             <a-entity>
-            <a-entity class="nametag" text="value: Hello World; align:center;" position="0 0.7 0" rotation="0 180 0" scale="8 8 8"></a-entity>
+            <a-entity class="name" text="value: Hello World; align:center;" position="0 0.7 0" rotation="0 180 0" scale="8 8 8"></a-entity>
                     <a-entity class="avatar" networked-audio-source>
 
                     <a-sphere class="head"
@@ -98,7 +98,7 @@
                 property: 'color'
             },
             {
-                selector: '.nametag',
+                selector: '.name',
                 component: 'text',
                 property: 'value'
             }
@@ -118,7 +118,7 @@
         var username = 'user-' + makeId(5).toLowerCase();
         username = prompt('Choose a username', username);
         var player = document.getElementById('player');
-        var myNametag = player.querySelector('.nametag');
+        var myNametag = player.querySelector(".name");
         myNametag.setAttribute('text', 'value', username);
         console.log( "nametag equals"+myNametag +"username equals"+ username+ "player var "+player)
         document.querySelector('a-scene').components['networked-scene'].connect();
