@@ -1,150 +1,112 @@
 <html>
   <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+    <link rel="stylesheet" href="./css/w3.css">
     <title>Ghertist 3D Chatroom</title>
     <meta name="description" content="Collection of examples for networked-aframe"></meta>
-    <style>
+  <style>
+    h1,h2,h3,h4,h5,h6{
+      font-family: "Allerta Stencil", Sans-serif;
+    }
+    .w3-theme {
+      color: #fff !important;
+      background-color: #56a56c !important;
+    }
 
-      @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-      @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
-
-      html {
-        background: black;
-        color: white;
-        font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 20px;
-        padding: 10px 20px;
-      }
-      h1 {
-        font-weight: 300;
-        font-family: 'Bungee', cursive;
-        animation: text-flicker 3s linear infinite;
-      }
-      h2{
-        animation: text-flicker 5s linear infinite;
-      }
-      a {
-        color: #FAFAFA;
-        /*display: block;*/
-        padding: 15px 0;
-      }
-      body > div {
-        margin: 20px 0;
-      }
-
-      .right{
-        float:right;
-        animation: fadeIn ease 20s;
-        -webkit-animation: fadeIn ease 20s;
-        -moz-animation: fadeIn ease 20s;
-        -o-animation: fadeIn ease 20s;
-        -ms-animation: fadeIn ease 20s;
-        max-width: 800px;
-        height: auto;
-      }
-      @keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-
-      @-moz-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-
-      @-webkit-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-
-      @-o-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-
-      @-ms-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-      @keyframes text-flicker {
-        0% {
-          opacity:0.1;
-          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
-        }
-
-        2% {
-          opacity:1;
-          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
-        }
-        8% {
-          opacity:0.1;
-          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
-        }
-        9% {
-          opacity:1;
-          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
-        }
-        12% {
-          opacity:0.1;
-          text-shadow: 0px 0px rgba(242, 22, 22, 1);
-        }
-        20% {
-          opacity:1;
-          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
-        }
-        25% {
-          opacity:0.3;
-          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
-        }
-        30% {
-          opacity:1;
-          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
-        }
-
-        70% {
-          opacity:0.7;
-          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
-        }
-
-        72% {
-          opacity:0.2;
-          text-shadow:0px 0px 29px rgba(242, 22, 22, 1)
-        }
-
-        77% {
-          opacity:.9;
-          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
-        }
-        100% {
-          opacity:.9;
-          text-shadow: 0px 0px 29px rgba(242, 22, 22, 1)
-        }
-      }
-      canvas { display: block; }
-
-
-
-    </style>
-
+  </style>
   </head>
   <body>
 
-    <h1>Ghertist 3D Chatroom</h1>
-    <img src = "images/title.jpg" width="1000" class="right"/>
-    <h4>Experimental 3D / VR  Chatroom platform supporting audio chat</h4>
-    <p>Talk to others using voicechat in 3D enviroments running in browser or Mobile</p>
-    <p><a href = "https://www.urbandictionary.com/define.php?term=Ghertist">What is a Ghertist?</a></p>
-    <p>Essentially an elaborate Joke...</p>
-    <h2>Chat Rooms</h2>
-    <div>
-      <ul>
-        <li><a href="citadel.html">Citadel</a> For conversations about anything</li>
-        <li><a href="mushroomfields.html">Mushroom Fields</a> Talk about anything 'deep' here - science, art, philosophy etc</li>
-        <li><a href="gallery.html">Art Gallery</a> View Art (Under development)</li>
-      </ul>
+<!-- new layout-->
+
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+      <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><h4>3D Chatroom</h4></a>
+      <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+      <a class="w3-bar-item w3-button w3-teal" href="#">Home</a>
+      <a class="w3-bar-item w3-button " href="#">ChatRooms:</a>
+      <a class="w3-bar-item w3-button" href="citadel.html">Citadel</a>
+      <a class="w3-bar-item w3-button" href="mushroomfields.html">Mushroom Fields</a>
+      <a class="w3-bar-item w3-button" href="gallery.html">Gallery</a>
+    </nav>
+
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+    <div class="w3-main" style="margin-left:250px;">
+
+      <div id="myTop" class="w3-container w3-top w3-theme w3-large">
+        <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+          <span id="myIntro" class="w3-hide">Ghertist 3D Chatroom</span></p>
+      </div>
+
+      <header class="w3-container w3-theme" style="padding:64px 32px">
+        <h1 class="w3-xxxlarge">Ghertist 3D Chatroom (Beta)</h1>
+        <h3 class="w3-xlarge">3D / VR  Chatroom platform supporting audio chat</h3>
+        <img class = "w3-display-topright w3-margin-right" src="images/logo/logo.png" style="width:12%" alt="Responsive">
+
+      </header>
+
+      <div class="w3-container" style="padding:32px">
+        <h2>What is Ghertist 3D Chatroom?</h2>
+        <p>Experimental 3D / VR  Chatroom platform supporting audio chat, Talk to others using voicechat in 3D enviroments running in browser or Mobile</p>
+        <ul class="w3-leftbar w3-theme-border" style="list-style:none">
+          <li>Powered by <a href = "https://aframe.io/">AFrame</a>, <a href="https://www.npmjs.com/package/networked-aframe">Networked AFrame</a> and <a href="https://github.com/supermedium/aframe-environment-component"> A-Frame Enviroment component</a> </li>
+          <li>Chat with others using your microphone</li>
+          <li>3D Enviroments</li>
+          <li>Move around with your avatar</li>
+        </ul>
+        <br>
+        <img src="images/ghertist.jpg" style="width:100%" alt="Responsive">
+        <hr>
+        <h2>Code Overview</h2>
+        <p>Ghertist 3D Chatroom creator Chris Godber Talking about the code for this prototype voicechat</p>
+        <iframe width="100%" height="600" src="https://www.youtube.com/embed/XNH2oDzBEw8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+      </div>
+
+      <footer class="w3-container w3-theme" style="padding:32px">
+        <p>Ghertist 3D Chatroom by Chris Godber 2020</p>
+      </footer>
+
     </div>
 
-    <h4>Powered by:</h4>
-    <p>Built with <a href="https://aframe.io/">A-Frame</a>, <a href ="https://www.npmjs.com/package/networked-aframe">Networked A-Frame</a> and <a href = "https://github.com/supermedium/aframe-environment-component">A-Frame Enviroment component</a> by <a href = "http://www.chrisgodber.co.uk">Chris Godber 2020</a></p>
+    <script>
+      // Open and close the sidebar on medium and small screens
+      function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+      }
+
+      function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+      }
+
+      // Change style of top container on scroll
+      window.onscroll = function() {myFunction()};
+      function myFunction() {
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+          document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+          document.getElementById("myIntro").classList.add("w3-show-inline-block");
+        } else {
+          document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+          document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+        }
+      }
+
+      // Accordions
+      function myAccordion(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+          x.previousElementSibling.className += " w3-theme";
+        } else {
+          x.className = x.className.replace("w3-show", "");
+          x.previousElementSibling.className =
+              x.previousElementSibling.className.replace(" w3-theme", "");
+        }
+      }
+    </script>
+
 
 
 
