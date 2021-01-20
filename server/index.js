@@ -27,9 +27,9 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Start Express http server
+
 const webServer = http.createServer(app);
 const io = require("socket.io")(webServer);
-
 const rooms = {};
 
 io.on("connection", socket => {

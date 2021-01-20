@@ -3,8 +3,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
     <link rel="stylesheet" href="./css/w3.css">
     <title>Ghertist 3D Chatroom</title>
-    <meta name="description" content="Collection of examples for networked-aframe"></meta>
-  <style>
+    <meta name="description" content="Free to use Browser based Experimental 3D / VR  Chatroom platform supporting audio chat, Talk to others using voicechat in 3D enviroments running in browser or Mobile"></meta>
+    <meta name="keywords" content="Chatroom, 3D, chat,audio, meeting, VR, WebXR, 3DChat">
+    <meta name="author" content="Chris Godber">
+
+    <style>
     h1,h2,h3,h4,h5,h6{
       font-family: "Allerta Stencil", Sans-serif;
     }
@@ -14,6 +17,9 @@
     }
 
   </style>
+<!--    <script>window.NAF || document.write('<script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js">\x3C/script>')</script>-->
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+
   </head>
   <body>
 
@@ -26,7 +32,7 @@
       <a class="w3-bar-item w3-button " href="#">ChatRooms:</a>
       <a class="w3-bar-item w3-button" href="citadel.html">Citadel</a>
       <a class="w3-bar-item w3-button" href="mushroomfields.html">Mushroom Fields</a>
-      <a class="w3-bar-item w3-button" href="gallery.html">Gallery</a>
+<!--      <a class="w3-bar-item w3-button" href="gallery.html">Gallery</a>-->
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
@@ -42,29 +48,35 @@
         <h1 class="w3-xxxlarge">Ghertist 3D Chatroom (Beta)</h1>
         <h3 class="w3-xlarge">3D / VR  Chatroom platform supporting audio chat</h3>
         <img class = "w3-display-topright w3-margin-right" src="images/logo/logo.png" style="width:12%" alt="Responsive">
-
+          <h4>Live Ghertist Count: </h4>
       </header>
 
       <div class="w3-container" style="padding:32px">
         <h2>What is Ghertist 3D Chatroom?</h2>
-        <p>Experimental 3D / VR  Chatroom platform supporting audio chat, Talk to others using voicechat in 3D enviroments running in browser or Mobile</p>
+        <p>Free to use Browser based Experimental 3D / VR  Chatroom platform supporting audio chat, Talk to others using voicechat in 3D enviroments running in browser or Mobile</p>
         <ul class="w3-leftbar w3-theme-border" style="list-style:none">
           <li>Powered by <a href = "https://aframe.io/">AFrame</a>, <a href="https://www.npmjs.com/package/networked-aframe">Networked AFrame</a> and <a href="https://github.com/supermedium/aframe-environment-component"> A-Frame Enviroment component</a> </li>
           <li>Chat with others using your microphone</li>
-          <li>3D Enviroments</li>
+          <li>Make sure you have headphones on (otherwise it can create feedback for others)</li>
+          <li>2 3D Enviroments to explore - more in pipeline</li>
           <li>Move around with your avatar</li>
         </ul>
         <br>
         <img src="images/ghertist.jpg" style="width:100%" alt="Responsive">
+        <h2>Possible Future Features</h2>
+        <ul class="w3-leftbar w3-theme-border" style="list-style:none">
+          <li>Moderation</li>
+          <li>Chat Interface</li>
+          <li>More advanced 3D Enviroments</li>
+        </ul>
         <hr>
         <h2>Code Overview</h2>
-        <p>Ghertist 3D Chatroom creator Chris Godber Talking about the code for this prototype voicechat</p>
-        <iframe width="100%" height="600" src="https://www.youtube.com/embed/XNH2oDzBEw8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>Ghertist 3D Chatroom creator Chris Godber Talking about the code for this prototype voicechat <a href = "https://www.youtube.com/embed/XNH2oDzBEw8" target="_blank">HERE</a></p>
 
       </div>
 
       <footer class="w3-container w3-theme" style="padding:32px">
-        <p>Ghertist 3D Chatroom by Chris Godber 2020</p>
+        <p>Ghertist 3D Chatroom by <a href = "http://www.chrisgodber.co.uk" target="_blank">Chris Godber</a> 2020</p>
       </footer>
 
     </div>
@@ -105,6 +117,15 @@
               x.previousElementSibling.className.replace(" w3-theme", "");
         }
       }
+
+      //display number of players
+      const socket = io();
+      const occupants = 0;
+      socket.on('connect', () => {
+        console.log("connect test")
+      });
+
+
     </script>
 
 
