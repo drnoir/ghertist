@@ -28,8 +28,8 @@
         <!-- Avatar -->
         <template id="avatar-template">
             <a-entity>
-            <a-entity class="name" text="value: Ghertist; align:center;" position="0 0.7 0" rotation="0 180 0" scale="8 8 8"></a-entity>
-                    <a-entity class="avatar" networked-audio-source>
+                <a-entity class="nametag" text="value: Ghertist; align:center;" position="0 0.7 0" rotation="0 180 0" scale="8 8 8"></a-entity>
+                <a-entity class="avatar" networked-audio-source>
 
                     <a-sphere class="head"
                               random-color
@@ -65,11 +65,17 @@
                 </a-entity>
             </a-entity>
         </template>
+
     </a-assets>
+
+
 <!--    lighting -->
     <a-entity light="color: #ccccff; intensity: 0.5; type: ambient;" visible=""></a-entity>
 
-        <a-entity id="player" visible="false" networked="template:#avatar-template;attachTemplateToLocal:true;" camera spawn-in-circle="radius:3;" position="0 1.3 0" wasd-controls look-controls>
+        <a-entity id="player"
+                  visible="false"
+                  networked="template:#avatar-template;attachTemplateToLocal:true;"
+                  camera spawn-in-circle="radius:3;" position="0 1.3 0" wasd-controls look-controls>
         </a-entity>
 
 
@@ -84,7 +90,7 @@
     </a-entity>
 
 </a-scene>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>-->
 <script>
 
     // Define custom schema for syncing avatar color, set by random-color
@@ -99,7 +105,7 @@
                 property: 'color'
             },
             {
-                selector: '.name',
+                selector: '.nametag',
                 component: 'text',
                 property: 'value'
             }
@@ -116,13 +122,12 @@
     }
 
     function onSceneLoad() {
-        var username = 'user-' + makeId(5).toLowerCase();
-        username = prompt('Choose a username', username);
-        console.log(username);
-        var player = document.getElementById('player');
-        var myNametag = player.querySelector(".name");
-        var tagCheck = myNametag.getAttribute('text');
-        myNametag.setAttribute(tagCheck.value , username);
+        //WIP Username nametag FUNC
+        // var username = 'user-' + makeId(5).toLowerCase();
+        // username = prompt('Choose a username', username);
+        // var player = document.getElementById('player');
+        // var myNametag = player.querySelector('.nametag');
+        // myNametag.setAttribute('text', 'value', username);
 
         document.querySelector('a-scene').components['networked-scene'].connect();
     }
@@ -142,7 +147,7 @@
         let countOccupants = Object.entries(NAF.connection.getConnectedClients()).length+1;
         console.log("onConnect", new Date());
         console.log("Occupants",  countOccupants);
-        alert ("There is"+countOccupants+" Ghertist currently Here");
+        alert ("There are "+countOccupants+" Ghertists Here");
     }
 
 
