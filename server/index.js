@@ -1,5 +1,5 @@
 // Load required modules
-const http = require("http"); // http server core module
+const http = require("https"); // http server core module
 const path = require("path");
 const express = require("express"); // web framework external module
 
