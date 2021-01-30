@@ -1,5 +1,5 @@
 // Load required modules
-const https = require("https"); // http server core module
+const http = require("http"); // http server core module
 const path = require("path");
 const express = require("express"); // web framework external module
 
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === "development") {
 
 // Start Express https server
 
-const webServer = https.createServer(app);
+const webServer = http.createServer(app);
 const io = require("socket.io")(webServer);
 const rooms = {};
 
@@ -85,5 +85,5 @@ io.on("connection", socket => {
 });
 
 webServer.listen(port, () => {
-  console.log("listening on https://localhost:" + port);
+  console.log("listening on http://localhost:" + port);
 });
