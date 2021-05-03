@@ -18,7 +18,7 @@
 
   </style>
 <!--    <script>window.NAF || document.write('<script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js">\x3C/script>')</script>-->
-    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
   </head>
   <body>
 
@@ -118,31 +118,14 @@
       }
 
       //display number of players
-      const socket = io();
-      // const occupants = 0;
-      // socket.on('connect', () => {
-      //   console.log("connect test")
-      // });
-
-      let connectCounter = 0;
-
-      socket.on("connect", () => {
-        console.log(socket.id); // x8WIv7-mJelg7on_ALbx
-        connectCounter++;
+      // const socket = io();//connect to the socket
+      const socket = io.connect( "http://localhost:8080");
+      socket.on("getCount", (arg) => {
+        console.log(arg); // world
+        document.getElementById("countOccupants").innerHTML = arg;
       });
-
-      socket.on("disconnect", () => {
-        console.log(socket.id); // x8WIv7-mJelg7on_ALbx
-        connectCounter--;
-      });
-
-      document.getElementById("countOccupants").innerHTML =connectCounter;
 
     </script>
-
-
-
-
 
     <!-- GitHub Corner. -->
     <a href="https://github.com/drnoir/ghertist" class="github-corner">

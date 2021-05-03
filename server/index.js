@@ -34,7 +34,6 @@ const rooms = {};
 
 io.on("connection", socket => {
   console.log("user connected", socket.id);
-
   let curRoom = null;
 
   socket.on("joinRoom", data => {
@@ -56,7 +55,9 @@ io.on("connection", socket => {
 
     socket.emit("connectSuccess", { joinedTime });
     const occupants = rooms[room].occupants;
+    //experimental to see if can return count of total connected
     io.in(curRoom).emit("occupantsChanged", { occupants });
+    socket.emit('getCount', { occupants } )
   });
 
   socket.on("send", data => {
