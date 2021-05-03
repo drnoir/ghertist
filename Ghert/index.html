@@ -19,7 +19,6 @@
   </style>
 <!--    <script>window.NAF || document.write('<script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js">\x3C/script>')</script>-->
     <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
-
   </head>
   <body>
 
@@ -48,7 +47,7 @@
         <h1 class="w3-xxxlarge">Ghertist 3D Chatroom (Beta)</h1>
         <h3 class="w3-xlarge">3D / VR  Chatroom platform supporting audio chat</h3>
         <img class = "w3-display-topright w3-margin-right" src="images/logo/logo.png" style="width:12%" alt="Responsive">
-          <h4>Live Ghertist Count: </h4>
+          <h4>Live Ghertist Count: <span id = "countOccupants"></span></h4>
       </header>
 
       <div class="w3-container" style="padding:32px">
@@ -120,11 +119,24 @@
 
       //display number of players
       const socket = io();
-      const occupants = 0;
-      socket.on('connect', () => {
-        console.log("connect test")
+      // const occupants = 0;
+      // socket.on('connect', () => {
+      //   console.log("connect test")
+      // });
+
+      let connectCounter = 0;
+
+      socket.on("connect", () => {
+        console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+        connectCounter++;
       });
 
+      socket.on("disconnect", () => {
+        console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+        connectCounter--;
+      });
+
+      document.getElementById("countOccupants").innerHTML =connectCounter;
 
     </script>
 
