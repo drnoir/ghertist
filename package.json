@@ -10,7 +10,6 @@
     "aframe-room-component": "^0.3.2",
     "networked-aframe": "^0.7.0",
     "xmlhttprequest-ssl": ">=1.6.2",
-    "socket.io": ">=2.4.0",
     "ws": ">=7.4.6"
   }
 }
