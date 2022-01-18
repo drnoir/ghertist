@@ -101,13 +101,14 @@
     let countText = "";
     let currentTrackTitle = "";
     //import function for music
-    import { playIt, defTitle } from "./js/MusicLib.js";
+    import { playIt, stopIt, defTitle } from "./js/MusicLib.js";
 
     //DOM elements for Music player
     const playBtn =document.getElementById('playBtn');
     const stopBtn = document.getElementById('stopBtn');
     const backBtn = document.getElementById('backBtn');
     const fwrdBtn = document.getElementById('fwrdBtn');
+    const playingUI =document.getElementById('currentTrack');
 
     // music play button event listeners
     playBtn.addEventListener("click", clickedBegin);
@@ -123,7 +124,7 @@
     }
 
     function clickedStop() {
-        playIt(trackNum, currentTrackTitle);
+        stopIt(trackNum);
     }
 
     function clickedBack() {
@@ -131,8 +132,11 @@
             // we decrement the track back one if we are not at the end /start of the track list
             trackNum--;
             // call play method again and update current track title for UI
+            stopIt(trackNum);
             playIt(trackNum, currentTrackTitle);
-            currentTrackTitle = defTitle(trackNum)
+            currentTrackTitle = defTitle(trackNum);
+            // update text for current playing track
+            playingUI.appendChild(currentTrackTitle);
             console.log( currentTrackTitle );
         }
     }
@@ -142,8 +146,11 @@
             // we increment the track back one if we are not at the end /start of the track list
             trackNum++;
             // call play method again and update current track title for UI
+            stopIt(trackNum);
             playIt(trackNum, currentTrackTitle);
-            currentTrackTitle = defTitle(trackNum)
+            currentTrackTitle = defTitle(trackNum);
+            // update text for current playing track
+            playingUI.appendChild(currentTrackTitle)
             console.log( currentTrackTitle );
         }
     }
@@ -201,7 +208,7 @@
         let countOccupants = Object.entries(NAF.connection.getConnectedClients()).length+1;
         console.log("onConnect", new Date());
         console.log("Occupants",  countOccupants);
-        const countDisplay = document.document.getElementsByClassName('countText');
+        const playerCount =document.getElementById('playerCount');
         // REPLACE WITH CUSTUM UI - ALERT IS NOT GOOD ANYMORE
         // alert ("There are "+countOccupants+" Ghertists Here");
         countText = "There are "+countOccupants+" Ghertists Here";
@@ -211,19 +218,20 @@
         const textNode = document.createTextNode( countText );
         para.appendChild(textNode);
         //append text to count display on load
-        countDisplay.appendChild(para);
+        playerCount.appendChild(para);
     }
 
 </script>
 <div class ="wrapperGen">
     <div class = "popup">
-        <h3>Radio</h3>
-        <p class="currentTrack">blabla by bvlbla</p>
+        <h3>Ghertist Radio</h3>
+        <p>Currently Playing:</p>
+        <p id="currentTrack"></p>
         <button class ="musicBtn" id="backBtn"><</button>
         <button class ="musicBtn" id="playBtn">Play</button>
         <button class ="musicBtn" id="stopBtn">Stop</button>
         <button class ="musicBtn" id="fwrdBtn">></button>
-        <p>Number of Players:</div>
+        <p id = "playerCount">Number of Players:</div>
     </div>
 
 
