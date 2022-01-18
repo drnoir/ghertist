@@ -9,7 +9,8 @@
   "dependencies": {
     "aframe-room-component": "^0.3.2",
     "networked-aframe": "^0.7.0",
-    "xmlhttprequest-ssl": ">=1.6.2",
-    "ws": ">=7.4.6"
+    "socket.io": "^4.4.1",
+    "ws": ">=7.4.6",
+    "xmlhttprequest-ssl": ">=1.6.2"
   }
 }
