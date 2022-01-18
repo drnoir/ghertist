@@ -1,0 +1,65 @@
+/*Reusable css for UI elements */
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
+h1,h2,h3,h4,h5{
+font-family: "Allerta Stencil", Sans-serif;
+         }
+/*class for popup ui Elements*/
+.wrapperGen{
+    width: 500px;
+    margin: 0 auto;
+}
+
+.countPopup{
+    background:#56a56c;
+    height:8px;
+    width:325px;
+    left:0;
+    text-align: center;
+    color:black;
+    z-index:1000;
+    position: fixed;
+    top:15%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.89;
+    padding:0.5em;
+    font-family: Verdana,sans-serif;
+    font-size: 15px;
+}
+
+.popup{
+    background:#56a56c;
+    left:0;
+    text-align: center;
+    color:black;
+    z-index:1000;
+    position: fixed;
+    top:0;
+    opacity: 0.89;
+    padding:5px;
+    font-family: "Allerta Stencil", Sans-serif;
+}
+
+.btn1{
+    background:white;
+    border: solid 1px black ;
+    font-size: 2em;
+    margin:4em;
+    font-family: "Allerta Stencil", Sans-serif;
+}
+
+
+.musicBtn{
+    background:lightgrey;
+    border: solid 0.5px black ;
+    font-size: 1em;
+    margin:1em;
+    font-family: "Allerta Stencil", Sans-serif;
+}
+
+.currentTrack{
+    font-size: 1em;
+    font-family: "Allerta Stencil", Sans-serif;
+}
