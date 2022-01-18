@@ -97,9 +97,60 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>-->
 <script type="module">
     // init text empty
+    let trackNum = 0;
     let countText = "";
+    let currentTrackTitle = "";
     //import function for music
-    import { playIt } from "./js/MusicLib.js";
+    import { playIt, defTitle } from "./js/MusicLib.js";
+
+    //DOM elements for Music player
+    const playBtn =document.getElementById('playBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const backBtn = document.getElementById('backBtn');
+    const fwrdBtn = document.getElementById('fwrdBtn');
+
+    // music play button event listeners
+    playBtn.addEventListener("click", clickedBegin);
+    stopBtn.addEventListener("click", clickedStop);
+    backBtn.addEventListener("click", clickedBack);
+    fwrdBtn.addEventListener("click", clickedFwd);
+
+    //some function to start with user input otherwise chrome will lose its mind
+    function clickedBegin() {
+        // TO DO on click - play track
+        // loading music on load for scene
+        playIt(trackNum, currentTrackTitle);
+    }
+
+    function clickedStop() {
+        playIt(trackNum, currentTrackTitle);
+    }
+
+    function clickedBack() {
+        if ( trackNum<=4 && trackNum >= 0 ) {
+            // we decrement the track back one if we are not at the end /start of the track list
+            trackNum--;
+            // call play method again and update current track title for UI
+            playIt(trackNum, currentTrackTitle);
+            currentTrackTitle = defTitle(trackNum)
+            console.log( currentTrackTitle );
+        }
+    }
+
+    function clickedFwd() {
+        if ( trackNum<=4 && trackNum >= 0 ) {
+            // we increment the track back one if we are not at the end /start of the track list
+            trackNum++;
+            // call play method again and update current track title for UI
+            playIt(trackNum, currentTrackTitle);
+            currentTrackTitle = defTitle(trackNum)
+            console.log( currentTrackTitle );
+        }
+    }
+
+
+
+
     // Define custom schema for syncing avatar color, set by random-color
     NAF.schemas.add({
         template: '#avatar-template',
@@ -163,22 +214,15 @@
         countDisplay.appendChild(para);
     }
 
-    //some function to start with user input otherwise chrome will lose its mind
-    function clickedBegin() {
-        // TO DO on click - play track - remove DOM element THEN
-        // loading music on load for scene
-        playIt(0);
-    }
-
 </script>
 <div class ="wrapperGen">
     <div class = "popup">
         <h3>Radio</h3>
         <p class="currentTrack">blabla by bvlbla</p>
-        <button class ="musicBtn"><</button>
-        <button class ="musicBtn">Play</button>
-        <button class ="musicBtn">Stop</button>
-        <button class ="musicBtn">></button>
+        <button class ="musicBtn" id="backBtn"><</button>
+        <button class ="musicBtn" id="playBtn">Play</button>
+        <button class ="musicBtn" id="stopBtn">Stop</button>
+        <button class ="musicBtn" id="fwrdBtn">></button>
         <p>Number of Players:</div>
     </div>
 

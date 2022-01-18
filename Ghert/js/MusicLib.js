@@ -1,4 +1,5 @@
-let trackUrl = ''
+let trackUrl = '';
+let trackTitle = "";
 
 //Can be made more flex and dynamic later  - just for now as we will have a fixed number of tracks with URL's
 const trackUrls =[
@@ -8,39 +9,52 @@ const trackUrls =[
     'Ghert/music/Bio Unit - Solitary.mp3',
    ]
 
+const trackTitles=[
+    'Bio Unit - Chicane',
+    'Bio Unit - Ground Effect',
+    'Bio Unit - Serenity',
+    'Bio Unit - Solitary',
+]
+
 //reusuable function to play a selected track
 function playIt(currentTrack)
 {
     let MusicUrl = switchMusic(currentTrack);
-    let selectedTrack = new Audio(MusicUrl)
-    selectedTrack.loop = true
-    selectedTrack.play()
+    let selectedTrack = new Audio(MusicUrl);
+    selectedTrack.loop = true;
+    selectedTrack.play();
+}
+
+// update track title method for UI based on current track selection
+function defTitle(currentTrack) {
+    trackTitle = trackTitles[currentTrack];
+    return trackTitle;
 }
 
 //function to switch and return current music track URL upon input
 function switchMusic(selectedTrack){
     switch (selectedTrack) {
         case 0:
-            trackUrl = trackUrls[0]
+            trackUrl = trackUrls[0];
             return trackUrl
             break;
         case 1:
-            trackUrl = trackUrls[1]
+            trackUrl = trackUrls[1];
             return trackUrl
             break;
         case 2:
-            trackUrl = trackUrls[2]
+            trackUrl = trackUrls[2];
             return trackUrl
             break;
         case 3:
-            trackUrl = trackUrls[3]
+            trackUrl = trackUrls[3];
             return trackUrl
             break;
         default:
-            trackUrl = trackUrls[0]
+            trackUrl = trackUrls[0];
     }
 }
 
 export {
-    switchMusic, playIt
+    switchMusic, playIt, defTitle
 }
