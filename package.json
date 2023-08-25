@@ -3,14 +3,20 @@
   "version": "1.0.0",
   "description": "My first multi-user virtual reality",
   "scripts": {
-    "start": "node ./server/index.js"
+    "start": "node ./server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Chris Godber",
   "dependencies": {
     "aframe-room-component": "^0.3.2",
+<<<<<<< HEAD
     "networked-aframe": "^0.7.0",
     "socket.io": "^4.4.1",
     "ws": ">=7.4.6",
     "xmlhttprequest-ssl": ">=1.6.2"
+=======
+    "cors": "^2.8.5",
+    "networked-aframe": "^0.7.0"
+>>>>>>> master
   }
 }
