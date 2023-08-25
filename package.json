@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "My first multi-user virtual reality",
   "scripts": {
-    "start": "node ./server/index.js"
+    "start": "node ./server/index.js",
+    "test" : "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Chris Godber",
   "dependencies": {
