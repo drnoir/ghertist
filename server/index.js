@@ -1,6 +1,7 @@
 // Load required modules
 const http = require("http"); // http server core module
 const path = require("path");
+var cors = require('cors')
 const express = require("express"); // web framework external module
 
 // Set process name
@@ -11,6 +12,7 @@ const port = process.env.PORT || 8080;
 
 // Setup and configure Express https server.
 const app = express();
+app.use(cors())
 app.use(express.static(path.resolve(__dirname, "..", "Ghert")));
 
 // Serve the example and build the bundle in development.
